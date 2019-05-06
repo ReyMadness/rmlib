@@ -1,0 +1,9 @@
+keyboard
+pyscreenshot
+mouse
+wmi
+wget
+gtts
+pygame
+pytube
+Pillow
