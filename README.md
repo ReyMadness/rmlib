@@ -1,4 +1,4 @@
-# RM-LIB   |   Library with functions
+﻿RM-LIB | Library with functions
 
 Chdir("name") - Меняет текущуюю директорию. Аргументы: name - путь папки.
 
@@ -6,27 +6,27 @@ Clear() - Отчищает консоль.
 
 Dir() - Выводит текущий путь.
 
+DoCommand("command") - Выполнение команды командной строки. Аргументы: command - сама команда.
+
 Download("link") - Скачивает файл. Аргументы: link - ссылка на файл, например: "http://site.com/file.exe".
 
 DownloadVideo("link") - Скачать видео с YouTube. Аргументы: link - ссылка на видео.
 
 Exit() - Выход из программы.
 
-GetCommand("command") - Выполнение команды командной строки. Аргументы: command - сама команда.
-
-GetHardware() - Выводит массивом спецификации ПК.
+GetHardware() - Выводит тёрплом спецификации ПК.
 
 GetHardwareCPU() - Выводит процессор.
 
 GetHardwareGPU() - Выводит видеокарту.
+
+GetHardwareMotherboard() - Выводит материнскую плату.
 
 GetHardwareRAM() - Выводит кол-во оперативной памяти.
 
 GetIP() - Выводит IP.
 
 GetMonitorResolution() - Выводит разрешение экрана.
-
-GetMotherboard() - Выводит материнскую плату.
 
 GetMousePosition() - Выводит текущие координаты мышки.
 
@@ -50,7 +50,7 @@ RmDir("name") - Удаляет папку. Аргументы: name - назва
 
 Screenshot() - Делает скриншот и сохраняет скрин в текущую директориию.
 
-SetImageAsDesktop("photo") - Установка фото на рабочий стол. Аргументы: photo - имя файла.
+SetImageOnDesktop("photo") - Установка фото на рабочий стол. Аргументы: photo - имя файла.
 
 Speech("text") - Робот говорит озвучивает текст. Аргументы: text - текст.
 
