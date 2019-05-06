@@ -7,3 +7,5 @@ gtts
 pygame
 pytube
 Pillow
+pywin32
+pypiwin32

